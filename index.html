@@ -1,7 +1,45 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+layout: splash
+
+title: "Mariano Percara"
+
+header:
+  overlay_color: "#000"
+  overlay_filter: "0.45"
+  overlay_image: /assets/images/header.jpg
+
+  actions:
+    - label: "Ver proyectos"
+      url: "/proyectos/"
+
+    - label: "Descargar CV"
+      url: "/cv/"
+
+excerpt: >
+  Ingeniero Civil especializado en estructuras, infraestructura, organismos multilaterales,
+  Business Intelligence y gestión de proyectos.
+
+feature_row:
+  - image_path: /assets/images/ingenieria.jpg
+    alt: "Ingeniería"
+    title: "Ingeniería"
+    excerpt: "Proyectos de infraestructura, cálculo estructural y supervisión de obras."
+    url: "/ingenieria/"
+    btn_label: "Ver más"
+
+  - image_path: /assets/images/bi.jpg
+    alt: "Business Intelligence"
+    title: "Business Intelligence"
+    excerpt: "Dashboards, Power BI, indicadores y análisis de datos."
+    url: "/bi/"
+    btn_label: "Ver más"
+
+  - image_path: /assets/images/docencia.jpg
+    alt: "Docencia"
+    title: "Docencia"
+    excerpt: "Material educativo, cursos y capacitaciones."
+    url: "/docencia/"
+    btn_label: "Ver más"
 ---
+
+{% include feature_row %}
