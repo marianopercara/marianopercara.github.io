@@ -27,7 +27,7 @@ baseurl: ""
 email:
 
 github_username: marianopercara
-minimal_mistakes_skin: dark
+minimal_mistakes_skin: "dark"
   # sino ver default / contrast / dark
 search: true
 
