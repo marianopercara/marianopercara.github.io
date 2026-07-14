@@ -66,7 +66,7 @@ plugins:
 
 author: #Esto se muestra en las paginas que tienen sidebar
   name: "Mariano Percara"
-  avatar: "/assets/images/profile.jpg"
+  avatar: "/assets/images/perfil.jpg"
   # bio: "Ingeniero Civil UBA especializado en estructuras, gestión de proyectos de infraestructura y Business Intelligence."
   location: "Buenos Aires, Argentina"
   links:
