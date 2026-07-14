@@ -1,9 +1,9 @@
 main:
   - title: "Inicio"
     url: /
-#  - title: "Posts"
-#    url: /posts/
-#  - title: "Categories"
-#    url: /categories/
+  - title: "CV"
+    url: /CV/
+  - title: "Contacto"
+    url: /contacto/
 #  - title: "Tags"
 #    url: /tags/
