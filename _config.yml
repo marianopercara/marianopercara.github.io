@@ -18,9 +18,9 @@ title: Mariano Percara
 subtitle: "Ingeniero Civil | Estructuralisata | Gestión de Proyectos de Infraestructura | Business Intelligence"
 name: "Mariano Percara"
 description: "Portfolio profesional de ingeniería, gestión de proyectos, infraestructura y Business Intelligence."
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  # Write an awesome description for your new site here. You can edit this
+  # line in _config.yml. It will appear in your document head meta (for
+  # Google search results) and in your feed.xml site description.
 url: "https://marianopercara.github.io"
 baseurl: ""
 
