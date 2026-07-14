@@ -64,30 +64,28 @@ plugins:
   - jemoji
   - jekyll-include-cache
 
-author:
+author: #Esto se muestra en las paginas que tienen sidebar
   name: "Mariano Percara"
   avatar: "/assets/images/profile.jpg"
-  bio: "Ingeniero Civil UBA especializado en estructuras, gestión de proyectos de infraestructura y Business Intelligence."
+  # bio: "Ingeniero Civil UBA especializado en estructuras, gestión de proyectos de infraestructura y Business Intelligence."
   location: "Buenos Aires, Argentina"
   links:
     - label: LinkedIn
       icon: fab fa-linkedin
       url: "https://linkedin.com/in/marianopercara"
-    - label: GitHub
-      icon: fab fa-github
-      url: "https://github.com/marianopercara"
+    - label: Contacto
+      icon: fas fa-envelope
+      url: "mailto:ing.percara@gmail.com"
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+    - label: LinkedIn
+      icon: fab fa-linkedin
+      url: "https://linkedin.com/in/marianopercara"
+    - label: Contacto
+      icon: fas fa-envelope
+      url: "mailto:ing.percara@gmail.com"
+
 
 defaults:
   # _posts
