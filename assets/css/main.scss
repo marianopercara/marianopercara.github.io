@@ -6,7 +6,7 @@
 
 .feature__wrapper {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
 
@@ -20,4 +20,17 @@
   .feature__wrapper {
     grid-template-columns: 1fr;
   }
+}
+
+.page {
+  max-width: 1400px;
+}
+
+.feature__wrapper {
+  width: 100%;
+  gap: 15px;
+}
+
+.feature__item {
+  width: 100%;
 }
