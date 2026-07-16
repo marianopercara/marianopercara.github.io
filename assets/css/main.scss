@@ -40,25 +40,33 @@
 
 
 /* ************** INTERACTIVIDAD DE LA GRILLA DE IMAGENES */
-
-/* 1. Mantiene la tarjeta como contenedor relativo */
+/* 1. Estilos base de la tarjeta (Fondo sutil, bordes redondeados y sombra inicial) */
 .archive__item {
   position: relative !important;
-  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  background-color: rgba(255, 255, 255, 0.03) !important; /* Fondo sutil para delimitar la caja */
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;  /* Borde fino */
+  border-radius: 8px !important;                           /* Bordes redondeados */
+  padding: 16px !important;                                 /* Espaciado interno */
+  
+  /* Transición ultra suave para todas las propiedades de la tarjeta */
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-/* 2. Suaviza la transición de la imagen al entrar y salir el cursor */
-.archive__item img {
-  transition: filter 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
-}
-
-/* 3. Aplica el movimiento suave a la tarjeta completa al hacer hover */
+/* 2. El efecto HOVER sobre la tarjeta completa */
 .archive__item:hover {
-  transform: translateY(-4px) !important;
+  transform: translateY(-6px) !important;                  /* Se eleva un poquito */
+  background-color: rgba(255, 255, 255, 0.08) !important;  /* El fondo se aclara */
+  border-color: rgba(255, 255, 255, 0.2) !important;       /* El borde se ilumina */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4) !important;    /* Sombra proyectada */
 }
 
-/* 4. Aplica el brillo y la sombra suave a la imagen cuando se pasa el cursor sobre la tarjeta */
+/* 3. Asegura que la imagen tenga transiciones de filtro ultra suaves */
+.archive__item img {
+  border-radius: 6px !important;                           /* Redondea esquinas de la imagen */
+  transition: filter 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* 4. ¡La magia de la imagen! Aumenta brillo y contraste al pasar el cursor sobre la tarjeta */
 .archive__item:hover img {
-  filter: brightness(1.15) contrast(1.15) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+  filter: brightness(1.15) contrast(1.05) !important;      /* Tu efecto preferido de resalte */
 }
