@@ -41,31 +41,25 @@
 
 /* ************** INTERACTIVIDAD DE LA GRILLA DE IMAGENES */
 
-/* Oculta por completo el molesto botón "Learn More" por defecto */
-.archive__item .btn {
-  display: none !important;
-}
-
-/* Hace que toda la tarjeta tenga comportamiento de cursor de enlace */
+/* 1. Prepara la tarjeta para que el enlace se expanda dentro de sus límites */
 .archive__item {
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
 }
 
-/* Resalte visual de la tarjeta (Hover) */
+/* 2. Efecto de elevación al pasar el cursor */
 .archive__item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
-/* Hace que la imagen brille o se aclare un poco al pasar el cursor */
+/* 3. Efecto de brillo y sombra en la imagen al hacer hover */
 .archive__item:hover .archive__item-teaser img {
-  filter: brightness(1.15) contrast(1.10); /* Resalta la imagen aumentando brillo y contraste */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Agrega una sombra suave debajo de la foto */
+  filter: brightness(1.15) contrast(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
-/* Hace que el link del título ocupe el 100% del contenedor */
+/* 4. LA MAGIA: Estira el enlace real del título para que ocupe TODA la tarjeta */
 .archive__item-title a::before {
   content: "";
   position: absolute;
@@ -73,10 +67,15 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10; /* Un z-index alto para asegurar que tape la imagen y el texto */
+  z-index: 5; /* Se superpone a la imagen, al texto y al fondo */
 }
 
-/* Asegura que las imágenes tengan una transición suave al salir el cursor */
+/* 5. Asegura que el cursor sea de mano en toda la tarjeta */
+.archive__item:hover {
+  cursor: pointer;
+}
+
+/* Transición suave para la imagen al sacar el mouse */
 .archive__item-teaser img {
   transition: all 0.3s ease;
 }
