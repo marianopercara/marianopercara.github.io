@@ -41,49 +41,44 @@
 
 /* ************** INTERACTIVIDAD DE LA GRILLA DE IMAGENES */
 
-/* 1. Prepara la tarjeta para que el enlace se expanda dentro de sus límites */
-.archive__item {
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* 1. Forzamos a todos los contenedores posibles de la grilla a ser el marco de referencia */
+.feature__item, 
+.archive__item,
+.feature__item-col {
+  position: relative !important;
 }
 
-/* 2. Efecto de elevación al pasar el cursor */
+/* 2. Efecto de elevación al pasar el cursor sobre la tarjeta */
+.feature__item:hover,
 .archive__item:hover {
   transform: translateY(-4px);
+  cursor: pointer !important;
 }
 
-/* 3. Efecto de brillo y sombra en la imagen al hacer hover */
-.archive__item:hover .archive__item-teaser img {
-  filter: brightness(1.15) contrast(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+/* 3. Efecto visual en la imagen */
+.archive__item:hover .archive__item-teaser img,
+.feature__item:hover .archive__item-teaser img {
+  filter: brightness(1.15) contrast(1.05) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
   transition: all 0.3s ease;
 }
 
-/* 4. LA MAGIA: Estira el enlace real del título para que ocupe TODA la tarjeta */
-.archive__item-title a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 5; /* Se superpone a la imagen, al texto y al fondo */
+/* 4. LA SOLUCIÓN AL CLICK: Forzamos al enlace del título a cubrir absolutamente TODO */
+.archive__item-title a::before,
+.feature__item-title a::before,
+.archive__item h2 a::before,
+.archive__item h3 a::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 9999 !important; /* Un valor exageradamente alto para que quede por encima de la imagen y el texto */
+  cursor: pointer !important;
 }
 
-/* 5. Asegura que el cursor sea de mano en toda la tarjeta */
-.archive__item:hover {
-  cursor: pointer;
-}
-
-/* Transición suave para la imagen al sacar el mouse */
+/* Asegura transiciones suaves en las imágenes */
 .archive__item-teaser img {
-  transition: all 0.3s ease;
+  transition: all 0.3s ease !important;
 }
-
-
-
-
-
-
-
-
