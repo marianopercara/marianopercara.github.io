@@ -58,7 +58,7 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA
+    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA (Tu script original)
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = link.getAttribute('href');
@@ -70,7 +70,7 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
       }
     });
 
-    // 2. HACER CLICKEABLE LA TARJETA COMPLETA (Imagen, título, texto y fondo)
+    // 2. CONVERTIR TODA LA TARJETA EN UN ENLACE NATIVO REAL
     const gridItems = document.querySelectorAll('.feature__item, .archive__item');
     
     gridItems.forEach(item => {
@@ -80,24 +80,28 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
         button.style.display = 'none';
       }
 
-      // Buscamos el enlace dentro del título para saber a dónde redirigir
-      const linkEl = item.querySelector('a'); 
-      if (linkEl) {
-        const targetUrl = linkEl.getAttribute('href');
+      // Buscamos el enlace original del título
+      const titleLink = item.querySelector('.archive__item-title a'); 
+      if (titleLink) {
+        const targetUrl = titleLink.getAttribute('href');
 
-        // Aplicamos el cursor de mano a toda la tarjeta y a TODOS sus elementos internos
-        item.style.cursor = 'pointer';
-        item.querySelectorAll('*').forEach(child => {
-          child.style.cursor = 'pointer';
-        });
+        // Para evitar enlaces anidados (que romperían el HTML), convertimos el link del título en texto plano temporalmente
+        const span = document.createElement('span');
+        span.innerHTML = titleLink.innerHTML;
+        titleLink.parentNode.replaceChild(span, titleLink);
 
-        // Al hacer click en cualquier parte del recuadro, redirige
-        item.addEventListener('click', function(e) {
-          // Si el usuario hace click en un enlace real interno (caso raro), dejamos que actúe normal
-          if (e.target.tagName === 'A') return;
-          
-          window.location.href = targetUrl;
-        });
+        // Creamos el nuevo enlace contenedor gigante
+        const wrapperLink = document.createElement('a');
+        wrapperLink.setAttribute('href', targetUrl);
+        
+        // Estilos para que el enlace no altere el diseño visual de la tarjeta
+        wrapperLink.style.textDecoration = 'none';
+        wrapperLink.style.color = 'inherit';
+        wrapperLink.style.display = 'block';
+
+        // Envolvemos la tarjeta con nuestro nuevo enlace
+        item.parentNode.insertBefore(wrapperLink, item);
+        wrapperLink.appendChild(item);
       }
     });
 
