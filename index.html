@@ -7,13 +7,12 @@ title: "Mariano Percara"
 header:
   overlay_color: "#000"
   overlay_filter: "0.45"
-  overlay_image: /assets/images/header.jpg
+  overlay_image: /assets/images/header.jpg     # IMAGEN DEL ENCABEZADO
 
-  
-actions:
+  actions:                                     # BOTONES DEL ENCABEZADO 
     - label: "✉️ Contacto vía e-mail"
       icon: fas fa-envelope
-     url: "mailto:ing.percara@gmail.com"
+      url: "mailto:ing.percara@gmail.com"
     - label: "💬 Contacto vía WhatsApp"
       icon: fab fa-whatsapp
       url: "https://wa.me/5491131865840"
@@ -21,11 +20,10 @@ actions:
       icon: fas fa-file-alt       
       url: "/cv/"
 
-
 excerpt: >
   Ingeniero Civil (UBA) especializado en estructuras, gestión de proyectos y business intelligence. Docente. 
 
-feature_row:
+feature_row:                                  # RECUADROS CON IMAGENES PARA NAVEGACIÓN
   - image_path: /assets/images/ingenieria.jpg
     alt: "Ingeniería"
     title: "Ingeniería"
@@ -57,7 +55,7 @@ feature_row:
 
 {% include feature_row %}
 
-<script>
+<script>                                                      # SCRIPT PARA QUE LOS ENLACES SE ABRAN EN PESTAÑA NUEVA
   document.addEventListener("DOMContentLoaded", function() {
     // Busca todos los enlaces de la página
     const links = document.querySelectorAll('a');
