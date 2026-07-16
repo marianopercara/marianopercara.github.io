@@ -57,8 +57,7 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    
-    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA (Tu script original)
+    // 1. Abrir enlaces externos en nueva pestaña
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = link.getAttribute('href');
@@ -70,40 +69,10 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
       }
     });
 
-    // 2. CONVERTIR TODA LA TARJETA EN UN ENLACE NATIVO REAL
-    const gridItems = document.querySelectorAll('.feature__item, .archive__item');
-    
-    gridItems.forEach(item => {
-      // Ocultamos el botón "Learn More"
-      const button = item.querySelector('.btn');
-      if (button) {
-        button.style.display = 'none';
-      }
-
-      // Buscamos el enlace original del título
-      const titleLink = item.querySelector('.archive__item-title a'); 
-      if (titleLink) {
-        const targetUrl = titleLink.getAttribute('href');
-
-        // Para evitar enlaces anidados (que romperían el HTML), convertimos el link del título en texto plano temporalmente
-        const span = document.createElement('span');
-        span.innerHTML = titleLink.innerHTML;
-        titleLink.parentNode.replaceChild(span, titleLink);
-
-        // Creamos el nuevo enlace contenedor gigante
-        const wrapperLink = document.createElement('a');
-        wrapperLink.setAttribute('href', targetUrl);
-        
-        // Estilos para que el enlace no altere el diseño visual de la tarjeta
-        wrapperLink.style.textDecoration = 'none';
-        wrapperLink.style.color = 'inherit';
-        wrapperLink.style.display = 'block';
-
-        // Envolvemos la tarjeta con nuestro nuevo enlace
-        item.parentNode.insertBefore(wrapperLink, item);
-        wrapperLink.appendChild(item);
-      }
+    // 2. Ocultar el botón por defecto de "Learn More"
+    const buttons = document.querySelectorAll('.archive__item .btn');
+    buttons.forEach(button => {
+      button.style.display = 'none';
     });
-
   });
 </script>
