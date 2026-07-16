@@ -41,26 +41,31 @@
 
 /* ************** INTERACTIVIDAD DE LA GRILLA DE IMAGENES */
 
-/* 1. Hace que toda la tarjeta de la grilla se comporte como un elemento interactivo */
+/* Oculta por completo el molesto botón "Learn More" por defecto */
+.archive__item .btn {
+  display: none !important;
+}
+
+/* Hace que toda la tarjeta tenga comportamiento de cursor de enlace */
 .archive__item {
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-/* 2. Efecto de resalte al pasar el cursor (Hover) */
+/* Resalte visual de la tarjeta (Hover) */
 .archive__item:hover {
-  transform: translateY(-4px); /* Eleva sutilmente la tarjeta */
+  transform: translateY(-5px);
 }
 
 /* Hace que la imagen brille o se aclare un poco al pasar el cursor */
 .archive__item:hover .archive__item-teaser img {
-  filter: brightness(1.15) contrast(1.05); /* Resalta la imagen aumentando brillo y contraste */
+  filter: brightness(1.15) contrast(1.10); /* Resalta la imagen aumentando brillo y contraste */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Agrega una sombra suave debajo de la foto */
   transition: all 0.3s ease;
 }
 
-/* 3. Convierte el título en un enlace completo que cubre toda la tarjeta */
-/* Esto permite que hacer click en CUALQUIER parte de la tarjeta (incluyendo la imagen) te lleve al destino */
+/* Hace que el link del título ocupe el 100% del contenedor */
 .archive__item-title a::before {
   content: "";
   position: absolute;
@@ -68,7 +73,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Estira el área de click de la URL del título sobre toda la tarjeta */
+  z-index: 10; /* Un z-index alto para asegurar que tape la imagen y el texto */
 }
 
 /* Asegura que las imágenes tengan una transición suave al salir el cursor */
