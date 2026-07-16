@@ -55,22 +55,49 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 
 {% include feature_row %}
 
-<script>                                                      # SCRIPT PARA QUE LOS ENLACES SE ABRAN EN PESTAÑA NUEVA
+<script>                                                     
   document.addEventListener("DOMContentLoaded", function() {
-    // Busca todos los enlaces de la página
-    const links = document.querySelectorAll('a');
     
+    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA (Tu script original corregido)
+    const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = link.getAttribute('href');
-      
-      // Si el enlace es externo (empieza con http/https) o es un mailto:
       if (url && (url.startsWith('http') || url.startsWith('mailto:'))) {
-        // Y si NO apunta a tu propio dominio (para no romper la navegación interna)
         if (!url.includes(window.location.host)) {
           link.setAttribute('target', '_blank');
           link.setAttribute('rel', 'noopener noreferrer');
         }
       }
     });
+
+    // 2. HACER LAS TARJETAS CLICKEABLES Y OCULTAR "LEARN MORE"
+    // Buscamos todas las tarjetas de la grilla
+    const cards = document.querySelectorAll('.archive__item');
+    
+    cards.forEach(card => {
+      // Ocultamos el botón "Learn More" si existe dentro de la tarjeta
+      const button = card.querySelector('.btn');
+      if (button) {
+        button.style.display = 'none'; // Desaparece visualmente del mapa
+      }
+
+      // Buscamos el enlace del título para obtener la URL correcta
+      const titleLink = card.querySelector('.archive__item-title a');
+      
+      if (titleLink) {
+        const targetUrl = titleLink.getAttribute('href');
+        
+        // Cambiamos el cursor al pasar por encima para que sepa que es clickeable
+        card.style.cursor = 'pointer';
+        
+        // Al hacer click en cualquier parte de la tarjeta, redirige a la URL
+        card.onclick = function(e) {
+          // Evitamos que se dispare doble comportamiento si hacen click justo en el texto
+          e.preventDefault(); 
+          window.location.href = targetUrl;
+        };
+      }
+    });
+
   });
 </script>
