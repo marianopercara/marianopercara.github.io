@@ -55,9 +55,11 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 
 {% include feature_row %}
 
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // 1. Abrir enlaces externos en nueva pestaña
+    
+    // 1. Abrir enlaces externos en nueva pestaña (Tu script original)
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = link.getAttribute('href');
@@ -69,10 +71,38 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
       }
     });
 
-    // 2. Ocultar el botón por defecto de "Learn More"
-    const buttons = document.querySelectorAll('.archive__item .btn');
-    buttons.forEach(button => {
-      button.style.display = 'none';
+    // 2. Convertir el contenido de la tarjeta en un enlace nativo real
+    const cards = document.querySelectorAll('.archive__item');
+    
+    cards.forEach(card => {
+      // Buscamos el botón que genera Jekyll por defecto con la URL
+      const button = card.querySelector('.btn');
+      
+      if (button) {
+        const targetUrl = button.getAttribute('href');
+        
+        // Eliminamos el botón físico para que no moleste ni rompa el diseño
+        button.remove();
+
+        // Creamos un enlace HTML real (<a>)
+        const nativeLink = document.createElement('a');
+        nativeLink.setAttribute('href', targetUrl);
+        
+        // Le aplicamos estilos para que sea invisible y ocupe todo el espacio
+        nativeLink.style.textDecoration = 'none';
+        nativeLink.style.color = 'inherit';
+        nativeLink.style.display = 'block';
+        nativeLink.style.width = '100%';
+        nativeLink.style.height = '100%';
+
+        // Movemos de forma segura todo lo que está adentro de la tarjeta (imagen, h2, p) adentro del enlace
+        while (card.firstChild) {
+          nativeLink.appendChild(card.firstChild);
+        }
+        
+        // Metemos el enlace dentro de la tarjeta contenedora
+        card.appendChild(nativeLink);
+      }
     });
   });
 </script>
