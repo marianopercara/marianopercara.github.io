@@ -19,13 +19,6 @@ header:
     - label: "Descargar CV"
       url: "/cv/"
 
-    - label: E-mail
-      icon: fas fa-envelope
-      url: "mailto:ing.percara@gmail.com"
-    - label: WhatsApp
-      icon: fab fa-whatsapp
-      url: "https://wa.me/5491131865840"
-
 
 excerpt: >
   Ingeniero Civil (UBA) especializado en estructuras, gestión de proyectos y business intelligence. Docente. 
@@ -61,3 +54,23 @@ feature_row:
 ---
 
 {% include feature_row %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Busca todos los enlaces de la página
+    const links = document.querySelectorAll('a');
+    
+    links.forEach(link => {
+      const url = link.getAttribute('href');
+      
+      // Si el enlace es externo (empieza con http/https) o es un mailto:
+      if (url && (url.startsWith('http') || url.startsWith('mailto:'))) {
+        // Y si NO apunta a tu propio dominio (para no romper la navegación interna)
+        if (!url.includes(window.location.host)) {
+          link.setAttribute('target', '_blank');
+          link.setAttribute('rel', 'noopener noreferrer');
+        }
+      }
+    });
+  });
+</script>
