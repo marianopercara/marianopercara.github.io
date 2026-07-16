@@ -55,10 +55,10 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 
 {% include feature_row %}
 
-<script>                                                     
+<script>
   document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA (Tu script original corregido)
+    // 1. ABRIR ENLACES EXTERNOS EN NUEVA PESTAÑA
     const links = document.querySelectorAll('a');
     links.forEach(link => {
       const url = link.getAttribute('href');
@@ -70,32 +70,34 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
       }
     });
 
-    // 2. HACER LAS TARJETAS CLICKEABLES Y OCULTAR "LEARN MORE"
-    // Buscamos todas las tarjetas de la grilla
-    const cards = document.querySelectorAll('.archive__item');
+    // 2. HACER CLICKEABLE LA TARJETA COMPLETA (Imagen, título, texto y fondo)
+    const gridItems = document.querySelectorAll('.feature__item, .archive__item');
     
-    cards.forEach(card => {
-      // Ocultamos el botón "Learn More" si existe dentro de la tarjeta
-      const button = card.querySelector('.btn');
+    gridItems.forEach(item => {
+      // Ocultamos el botón "Learn More"
+      const button = item.querySelector('.btn');
       if (button) {
-        button.style.display = 'none'; // Desaparece visualmente del mapa
+        button.style.display = 'none';
       }
 
-      // Buscamos el enlace del título para obtener la URL correcta
-      const titleLink = card.querySelector('.archive__item-title a');
-      
-      if (titleLink) {
-        const targetUrl = titleLink.getAttribute('href');
-        
-        // Cambiamos el cursor al pasar por encima para que sepa que es clickeable
-        card.style.cursor = 'pointer';
-        
-        // Al hacer click en cualquier parte de la tarjeta, redirige a la URL
-        card.onclick = function(e) {
-          // Evitamos que se dispare doble comportamiento si hacen click justo en el texto
-          e.preventDefault(); 
+      // Buscamos el enlace dentro del título para saber a dónde redirigir
+      const linkEl = item.querySelector('a'); 
+      if (linkEl) {
+        const targetUrl = linkEl.getAttribute('href');
+
+        // Aplicamos el cursor de mano a toda la tarjeta y a TODOS sus elementos internos
+        item.style.cursor = 'pointer';
+        item.querySelectorAll('*').forEach(child => {
+          child.style.cursor = 'pointer';
+        });
+
+        // Al hacer click en cualquier parte del recuadro, redirige
+        item.addEventListener('click', function(e) {
+          // Si el usuario hace click en un enlace real interno (caso raro), dejamos que actúe normal
+          if (e.target.tagName === 'A') return;
+          
           window.location.href = targetUrl;
-        };
+        });
       }
     });
 
