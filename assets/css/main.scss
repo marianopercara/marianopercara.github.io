@@ -4,6 +4,8 @@
 @import "minimal-mistakes/skins/dark";
 @import "minimal-mistakes";
 
+/* ************** CONFIGURACIÓN DE LA GRILLA DE IMAGENES */
+
 .feature__wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -34,3 +36,50 @@
 .feature__item {
   width: 100%;
 }
+
+
+
+/* ************** INTERACTIVIDAD DE LA GRILLA DE IMAGENES */
+
+/* 1. Hace que toda la tarjeta de la grilla se comporte como un elemento interactivo */
+.archive__item {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 2. Efecto de resalte al pasar el cursor (Hover) */
+.archive__item:hover {
+  transform: translateY(-4px); /* Eleva sutilmente la tarjeta */
+}
+
+/* Hace que la imagen brille o se aclare un poco al pasar el cursor */
+.archive__item:hover .archive__item-teaser img {
+  filter: brightness(1.15) contrast(1.05); /* Resalta la imagen aumentando brillo y contraste */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Agrega una sombra suave debajo de la foto */
+  transition: all 0.3s ease;
+}
+
+/* 3. Convierte el título en un enlace completo que cubre toda la tarjeta */
+/* Esto permite que hacer click en CUALQUIER parte de la tarjeta (incluyendo la imagen) te lleve al destino */
+.archive__item-title a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Estira el área de click de la URL del título sobre toda la tarjeta */
+}
+
+/* Asegura que las imágenes tengan una transición suave al salir el cursor */
+.archive__item-teaser img {
+  transition: all 0.3s ease;
+}
+
+
+
+
+
+
+
+
