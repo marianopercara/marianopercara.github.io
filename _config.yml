@@ -73,18 +73,24 @@ author: #Esto se muestra en las paginas que tienen sidebar
     - label: LinkedIn
       icon: fab fa-linkedin
       url: "https://linkedin.com/in/marianopercara"
-    - label: Contacto
+    - label: E-mail
       icon: fas fa-envelope
       url: "mailto:ing.percara@gmail.com"
+    - label: WhatsApp
+      icon: fab fa-whatsapp
+      url: "https://wa.me/5491131865840"
 
 footer:
   links:
     - label: LinkedIn
       icon: fab fa-linkedin
       url: "https://linkedin.com/in/marianopercara"
-    - label: Contacto
+    - label: E-mail
       icon: fas fa-envelope
       url: "mailto:ing.percara@gmail.com"
+    - label: WhatsApp
+      icon: fab fa-whatsapp
+      url: "https://wa.me/5491131865840"
 
 
 defaults:
