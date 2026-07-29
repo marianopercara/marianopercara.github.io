@@ -2,9 +2,9 @@
 layout: single
 title: "Ingeniería"
 permalink: /ingenieria/
----
 
-# Ingeniería
+author_profile: true
+---
 
 Bienvenido a la sección de Ingeniería.
 
