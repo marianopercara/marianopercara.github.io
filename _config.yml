@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Mariano Percara
-subtitle: "Ingeniero Civil | Estructuralista | Gestión de Proyectos de Infraestructura | Business Intelligence | Docente"
+subtitle: "Ingeniero Civil Estructuralista | Gestión de Proyectos de Infraestructura | Especialista en Adquisiciones | Business Intelligence y Análisis de Datos | Docente "
 name: "Mariano Percara"
 description: "Portfolio profesional de ingeniería, gestión de proyectos, infraestructura y Business Intelligence."
   # Write an awesome description for your new site here. You can edit this
@@ -67,7 +67,7 @@ plugins:
 author: #Esto se muestra en las paginas que tienen sidebar
   name: "Mariano Percara"
   avatar: "/assets/images/perfil3.jpg"
-  # bio: "Ingeniero Civil UBA especializado en estructuras, gestión de proyectos de infraestructura y Business Intelligence."
+  # bio: "Ingeniero Civil UBA especializado en estructuras, gestión de proyectos de infraestructura, adquisiciones, Business Intelligence y Análisis de Datos."
   location: "Buenos Aires, Argentina"
   links:
     - label: LinkedIn
