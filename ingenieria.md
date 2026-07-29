@@ -3,7 +3,8 @@ layout: single
 title: "Ingeniería"
 permalink: /ingenieria/
 
-author_profile: false
+classes: wide
+
 toc: true
 toc_label: "Contenido"
 toc_icon: "list"
