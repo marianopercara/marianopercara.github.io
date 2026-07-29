@@ -70,3 +70,15 @@
 .archive__item:hover img {
   filter: brightness(1.15) contrast(1.05) !important;      /* Tu efecto preferido de resalte */
 }
+
+
+/* FORMATO DEL LAYOUT SINGLE (SUB-PÁGINAS INTERNAS) */
+.layout--single .page {
+  max-width: 1600px;
+}
+
+.layout--single .page__inner-wrap {
+  max-width: 100%;
+}
+
+
