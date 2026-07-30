@@ -84,9 +84,8 @@
 /* ===== TOC personalizada ===== */
 
 .toc-auto {
-  position: absolute;
-  top: 0;
-  left: -280px;
+  position: sticky;
+  top: 120px;
 
   width: 220px;
 
