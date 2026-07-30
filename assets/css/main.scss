@@ -146,29 +146,29 @@
 }
 
 
-.layout--single .page__inner-wrap {
+.layout--portfolio .page__inner-wrap {
   max-width: none;
 }
 
 /* ===== AJUSTE ANCHO PORTFOLIO ===== */
 
-.layout--single .page {
+.layout--portfolio .page {
   width: 100%;
   max-width: none;
 }
 
-.layout--single .page__inner-wrap {
+.layout--portfolio .page__inner-wrap {
   width: 100%;
   max-width: none;
 }
 
-.layout--single .portfolio-layout {
+.layout--portfolio .portfolio-layout {
   width: 100%;
 }
 
 /* ===== AJUSTE CONTENEDOR PORTFOLIO ===== */
 
-.layout--single .initial-content {
+.layout--portfolio .initial-content {
   max-width: none;
   width: 100%;
   margin-left: 0;
@@ -176,11 +176,11 @@
 }
 /* ===== AJUSTE PORTFOLIO: ELIMINAR SIDEBAR NATIVO ===== */
 
-.layout--single article.page {
+.layout--portfolio article.page {
   float: none;
 }
 
-.layout--single .page__inner-wrap {
+.layout--portfolio .page__inner-wrap {
   padding-inline-end: 0;
 }
 
@@ -196,7 +196,7 @@ article.page {
   padding-inline-end: 0 !important;
 }
 
-.layout--single .page__content {
+.layout--portfolio .page__content {
   width: 100%;
   max-width: none;
 }
@@ -206,10 +206,9 @@ article.page {
 
 @media (min-width: 64em) {
 
-  .layout--single .page {
+  .layout--portfolio .page {
     float: none;
     width: 100%;
     padding-inline-end: 0;
   }
-
 }
