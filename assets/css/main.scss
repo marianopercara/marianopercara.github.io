@@ -183,3 +183,15 @@
 .layout--single .page__inner-wrap {
   padding-inline-end: 0;
 }
+
+.page__inner-wrap {
+  float: none;
+  padding-inline-end: 0 !important;
+}
+
+/* ===== AJUSTE PORTFOLIO: eliminar layout lateral de Minimal Mistakes ===== */
+
+article.page {
+  float: none;
+  padding-inline-end: 0 !important;
+}
