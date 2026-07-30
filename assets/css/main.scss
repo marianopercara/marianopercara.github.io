@@ -195,3 +195,9 @@ article.page {
   float: none;
   padding-inline-end: 0 !important;
 }
+
+.layout--single .page__content {
+  width: 100%;
+  max-width: none;
+}
+
