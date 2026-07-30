@@ -77,8 +77,8 @@
 
 .portfolio-layout {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
-  gap: 40px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 30px;
   align-items: start;
 }
 
@@ -89,14 +89,15 @@
 
 .portfolio-content {
   min-width: 0;
+  width: 100%;
 }
 
 
 /* ===== TOC ===== */
 
 .toc-auto {
-  width: 220px;
-  padding: 18px;
+  width: 200px;
+  padding: 12px;
 
   border-radius: 8px;
 
@@ -142,3 +143,4 @@
   }
 
 }
+
