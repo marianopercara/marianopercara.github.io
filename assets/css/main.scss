@@ -174,3 +174,12 @@
   margin-left: 0;
   margin-right: 0;
 }
+/* ===== AJUSTE PORTFOLIO: ELIMINAR SIDEBAR NATIVO ===== */
+
+.layout--single article.page {
+  float: none;
+}
+
+.layout--single .page__inner-wrap {
+  padding-inline-end: 0;
+}
