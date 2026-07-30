@@ -81,4 +81,45 @@
   max-width: 100%;
 }
 
+/* ===== TOC personalizada ===== */
+
+.toc-auto {
+  position: fixed;
+  top: 140px;
+  left: 30px;
+
+  width: 220px;
+
+  padding: 18px;
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,.04);
+
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.toc-auto h4{
+  margin-top:0;
+  margin-bottom:12px;
+}
+
+.toc-auto ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.toc-auto li{
+  margin:8px 0;
+}
+
+.toc-auto a{
+  text-decoration:none;
+}
+
+.page__content{
+  margin-left:260px;
+}
+
 
