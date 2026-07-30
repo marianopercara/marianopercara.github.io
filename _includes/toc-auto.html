@@ -1,0 +1,39 @@
+<nav class="toc-auto">
+  <h4>Contenido</h4>
+
+  <ul id="toc-auto-list"></ul>
+</nav>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const toc = document.getElementById("toc-auto-list");
+  if (!toc) return;
+
+  const headings = document.querySelectorAll(".page__content h2");
+
+  headings.forEach(function(h) {
+
+    if (!h.id) {
+      h.id = h.textContent
+        .toLowerCase()
+        .replace(/[^\w\s-]/g,"")
+        .replace(/\s+/g,"-");
+    }
+
+    const li = document.createElement("li");
+
+    const a = document.createElement("a");
+
+    a.href = "#" + h.id;
+
+    a.textContent = h.textContent;
+
+    li.appendChild(a);
+
+    toc.appendChild(li);
+
+  });
+
+});
+</script>
