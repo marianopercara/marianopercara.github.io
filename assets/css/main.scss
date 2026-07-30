@@ -201,3 +201,15 @@ article.page {
   max-width: none;
 }
 
+
+/* ===== PORTFOLIO: eliminar sidebar derecho de Minimal Mistakes ===== */
+
+@media (min-width: 64em) {
+
+  .layout--single .page {
+    float: none;
+    width: 100%;
+    padding-inline-end: 0;
+  }
+
+}
