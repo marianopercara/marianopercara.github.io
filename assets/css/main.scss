@@ -247,6 +247,8 @@
 
   text-decoration: none;
 
+  color: rgba(255,255,255,.75);
+
   opacity: .75;
 
   transition: all .25s ease;
@@ -254,8 +256,8 @@
 }
 
 .portfolio-nav a:visited {
-  color: inherit;
-  opacity: .75;
+  color: rgba(255,255,255,.75) !important;
+  opacity: .75 !important;
 }
 
 .portfolio-nav a:hover,
