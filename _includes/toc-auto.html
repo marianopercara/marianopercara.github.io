@@ -1,5 +1,5 @@
 <aside class="toc-auto">
-  <h4 id="toc-title"></h4>
+  <h4>En esta página</h4>
   <ul id="toc-auto-list"></ul>
 </aside>
 
@@ -10,17 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const toc = document.getElementById("toc-auto-list");
   if (!toc) return;
 
-
-  const tocTitle = document.getElementById("toc-title");
-  const pageTitle = document.querySelector(".page__title");
-
-  if (tocTitle && pageTitle) {
-
-    tocTitle.textContent = pageTitle.textContent.trim();
-
-  }
-
-  
+ 
   const headings = document.querySelectorAll(".page__content h2");
 
   headings.forEach(function(h) {
@@ -87,37 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
   headings.forEach(function(h) {
     observer.observe(h);
   });
-
-
-
-  const titleObserver = new IntersectionObserver(
-    function(entries){
-
-      entries.forEach(function(entry){
-
-        if(entry.isIntersecting){
-
-          tocTitle.classList.add("hidden");
-
-        }
-        else{
-
-          tocTitle.classList.remove("hidden");
-
-        }
- 
-      });
-
-    },
-    {
-      threshold: 0
-    }
-  );
-
-
-  if (tocTitle && pageTitle) {
-    titleObserver.observe(pageTitle);
-  }
 
 
 });
