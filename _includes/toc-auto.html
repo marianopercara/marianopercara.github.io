@@ -1,8 +1,7 @@
-<nav class="toc-auto">
+<aside class="toc-auto">
   <h4>Contenido</h4>
-
   <ul id="toc-auto-list"></ul>
-</nav>
+</aside>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,15 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     const li = document.createElement("li");
-
     const a = document.createElement("a");
 
     a.href = "#" + h.id;
-
     a.textContent = h.textContent;
 
     li.appendChild(a);
-
     toc.appendChild(li);
 
   });
