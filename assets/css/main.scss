@@ -249,17 +249,7 @@
 
   opacity: 0.9;
 
-  color: #494e52;
-
   transition: all .25s ease;
-
-}
-
-.portfolio-nav a:visited {
-
-  color: #494e52 !important;
-
-  opacity: 0.9;
 
 }
 
@@ -283,7 +273,9 @@
 
   background: rgba(255,255,255,.10);
 
-  border-color: rgba(255,255,255,.30);
+  border-top-color: rgba(255,255,255,.30);
+  border-right-color: rgba(255,255,255,.30);
+  border-bottom-color: rgba(255,255,255,.30);
 
   border-left: 4px solid #494e52;
 
