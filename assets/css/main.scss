@@ -122,4 +122,16 @@
   position: relative;
 }
 
+/* ===== TOC responsive ===== */
 
+@media (max-width: 1200px) {
+
+  .toc-auto {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+}
