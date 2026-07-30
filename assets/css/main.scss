@@ -72,65 +72,73 @@
 }
 
 
-/* FORMATO DEL LAYOUT SINGLE (SUB-PÁGINAS INTERNAS) */
-.layout--single .page {
-  max-width: 1600px;
+
+/* ===== LAYOUT PORTFOLIO ===== */
+
+.portfolio-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
 }
 
-.layout--single .page__inner-wrap {
-  max-width: 100%;
-}
-
-/* ===== TOC personalizada ===== */
-
-.toc-auto {
+.portfolio-sidebar {
   position: sticky;
   top: 120px;
+}
 
+.portfolio-content {
+  min-width: 0;
+}
+
+
+/* ===== TOC ===== */
+
+.toc-auto {
   width: 220px;
-
   padding: 18px;
 
   border-radius: 8px;
 
   background: rgba(255,255,255,.04);
-
   border: 1px solid rgba(255,255,255,.08);
 }
 
-.toc-auto h4{
-  margin-top:0;
-  margin-bottom:12px;
+.toc-auto h4 {
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
-.toc-auto ul{
-  list-style:none;
-  padding:0;
-  margin:0;
+.toc-auto ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.toc-auto li{
-  margin:8px 0;
+.toc-auto li {
+  margin: 8px 0;
 }
 
-.toc-auto a{
-  text-decoration:none;
+.toc-auto a {
+  text-decoration: none;
 }
 
-.page__content {
-  position: relative;
-}
 
-/* ===== TOC responsive ===== */
+/* ===== RESPONSIVE ===== */
 
-@media (max-width: 1200px) {
+@media (max-width: 1000px) {
 
-  .toc-auto {
+  .portfolio-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-sidebar {
     position: relative;
     top: auto;
-    left: auto;
+  }
+
+  .toc-auto {
     width: 100%;
-    margin-bottom: 30px;
   }
 
 }
