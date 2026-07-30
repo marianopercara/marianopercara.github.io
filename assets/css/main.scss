@@ -249,26 +249,17 @@
 
   opacity: 0.9;
 
+  color: #494e52;
+
   transition: all .25s ease;
 
 }
 
 .portfolio-nav a:visited {
 
-  color: inherit !important;
+  color: #494e52 !important;
 
-  opacity: 0.9 !important;
-
-}
-
-.portfolio-nav a:hover,
-.portfolio-nav a:focus {
-
-  opacity: 1;
-
-  background: rgba(255,255,255,.06);
-
-  border-color: rgba(255,255,255,.20);
+  opacity: 0.9;
 
 }
 
@@ -293,6 +284,10 @@
   background: rgba(255,255,255,.10);
 
   border-color: rgba(255,255,255,.30);
+
+  border-left: 4px solid #494e52;
+
+  padding-left: 8px;
 
   font-weight: bold;
 
