@@ -3,10 +3,7 @@ layout: single
 title: "Ingeniería"
 permalink: /ingenieria/
 
-toc: true
-toc_label: "Contenido"
-toc_icon: "list"
-toc_sticky: true
+author_profile: false
 ---
 
 Bienvenido a la sección de Ingeniería.
