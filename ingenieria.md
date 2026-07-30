@@ -1,12 +1,10 @@
 ---
-layout: single
+layout: portfolio
 title: "Ingeniería"
 permalink: /ingenieria/
 
 author_profile: false
 ---
-
-{% include toc-auto.html %}
 
 Bienvenido a la sección de Ingeniería.
 
