@@ -264,6 +264,11 @@
 
 }
 
+.portfolio-nav a,
+.portfolio-nav a:visited {
+  color: #7fc4c8;
+}
+
 
 /* ===== SECCIÓN ACTIVA ===== */
 
@@ -277,7 +282,7 @@
   border-right-color: rgba(255,255,255,.30);
   border-bottom-color: rgba(255,255,255,.30);
 
-  border-left: 4px solid #7a8288;
+  border-left: 4px solid currentColor;
 
   padding-left: 8px;
 
