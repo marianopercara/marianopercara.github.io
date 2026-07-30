@@ -247,17 +247,18 @@
 
   text-decoration: none;
 
-  color: rgba(255,255,255,.75);
-
-  opacity: .75;
+  opacity: 0.9;
 
   transition: all .25s ease;
 
 }
 
 .portfolio-nav a:visited {
-  color: rgba(255,255,255,.75) !important;
-  opacity: .75 !important;
+
+  color: inherit !important;
+
+  opacity: 0.9 !important;
+
 }
 
 .portfolio-nav a:hover,
@@ -268,5 +269,31 @@
   background: rgba(255,255,255,.06);
 
   border-color: rgba(255,255,255,.20);
+
+}
+
+.portfolio-nav a:hover,
+.portfolio-nav a:focus {
+
+  opacity: 1;
+
+  background: rgba(255,255,255,.06);
+
+  border-color: rgba(255,255,255,.20);
+
+}
+
+
+/* ===== SECCIÓN ACTIVA ===== */
+
+.portfolio-nav a.active {
+
+  opacity: 1;
+
+  background: rgba(255,255,255,.10);
+
+  border-color: rgba(255,255,255,.30);
+
+  font-weight: bold;
 
 }
