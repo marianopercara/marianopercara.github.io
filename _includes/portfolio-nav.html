@@ -4,17 +4,17 @@
 
   <ul>
 
-    <li><a href="/">Página principal</a></li>
+    <li><a href="/" class="{% if page.url == '/' %}active{% endif %}">Página principal</a></li>
 
-    <li><a href="/ingenieria/">Ingeniería</a></li>
+    <li><a href="/ingenieria/" class="{% if page.url contains '/ingenieria' %}active{% endif %}">Ingeniería</a></li>
 
-    <li><a href="/gestion-proyectos/">Gestión de Proyectos</a></li>
+    <li><a href="/gestion-proyectos/" class="{% if page.url contains '/gestion-proyectos' %}active{% endif %}">Gestión de Proyectos</a></li>
 
-    <li><a href="/adquisiciones/">Adquisiciones y Contrataciones</a></li>
+    <li><a href="/adquisiciones/" class="{% if page.url contains '/adquisiciones' %}active{% endif %}">Adquisiciones y Contrataciones</a></li>
 
-    <li><a href="/bi/">Business Intelligence y Análisis de Datos</a></li>
+    <li><a href="/bi/" class="{% if page.url contains '/bi' %}active{% endif %}">Business Intelligence y Análisis de Datos</a></li>
 
-    <li><a href="/docencia/">Docencia</a></li>
+    <li><a href="/docencia/" class="{% if page.url contains '/docencia' %}active{% endif %}">Docencia</a></li>
 
   </ul>
 
