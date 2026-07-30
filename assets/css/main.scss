@@ -96,11 +96,9 @@
 .toc-auto {
   width: var(--toc-width);
   padding: 12px;
-
   border-radius: 8px;
-
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .toc-auto h4 {
@@ -115,27 +113,43 @@
 }
 
 .toc-auto li {
-  margin: 8px 0;
+  margin: 6px 0;
 }
 
-.toc-auto a {
+/* Tarjeta base para los enlaces de la TOC */
+.toc-auto a,
+.toc-auto a:visited {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  color: #7fc4c8;
   text-decoration: none;
+  opacity: 0.9;
+  transition: all 0.25s ease;
 }
 
-/* ===== TOC ACTIVA ===== */
+/* Efecto Hover */
+.toc-auto a:hover,
+.toc-auto a:focus {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+/* ===== TOC ACTIVA (Mismo formato y barra lateral que la navegación superior) ===== */
 
 .toc-auto a.active {
-  font-weight: bold;
   opacity: 1;
+  background: rgba(255, 255, 255, 0.10);
+  border-top-color: rgba(255, 255, 255, 0.30);
+  border-right-color: rgba(255, 255, 255, 0.30);
+  border-bottom-color: rgba(255, 255, 255, 0.30);
+  border-left: 4px solid currentColor;
   padding-left: 8px;
-  border-left: 3px solid currentColor;
+  font-weight: bold;
 }
-
-.toc-auto a {
-  opacity: 0.75;
-  transition: all 0.2s ease;
-}
-
 
 /* ===== RESPONSIVE ===== */
 
