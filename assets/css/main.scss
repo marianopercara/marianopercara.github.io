@@ -165,3 +165,12 @@
 .layout--single .portfolio-layout {
   width: 100%;
 }
+
+/* ===== AJUSTE CONTENEDOR PORTFOLIO ===== */
+
+.layout--single .initial-content {
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
