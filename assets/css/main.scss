@@ -84,9 +84,9 @@
 /* ===== TOC personalizada ===== */
 
 .toc-auto {
-  position: fixed;
-  top: 140px;
-  left: 30px;
+  position: absolute;
+  top: 0;
+  left: -280px;
 
   width: 220px;
 
@@ -118,8 +118,8 @@
   text-decoration:none;
 }
 
-.toc-auto + .page__content {
-  margin-left: 260px;
+.page__content {
+  position: relative;
 }
 
 
