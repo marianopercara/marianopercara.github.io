@@ -97,15 +97,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if(entry.isIntersecting){
 
-          tocTitle.style.opacity = "0";
+          tocTitle.classList.add("hidden");
 
         }
         else{
 
-          tocTitle.style.opacity = "1";
+          tocTitle.classList.remove("hidden");
 
         }
-
+ 
       });
 
     },
