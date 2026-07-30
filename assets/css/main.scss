@@ -24,10 +24,6 @@
   }
 }
 
-.page {
-  max-width: none;
-}
-
 .feature__wrapper {
   width: 100%;
   gap: 15px;
@@ -76,8 +72,9 @@
 /* ===== LAYOUT PORTFOLIO ===== */
 
 .portfolio-layout {
+  --toc-width: 200px;
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-columns: var(--toc-width) minmax(0, 1fr);
   gap: 30px;
   align-items: start;
   width: 100%;
@@ -97,7 +94,7 @@
 /* ===== TOC ===== */
 
 .toc-auto {
-  width: 200px;
+  width: var(--toc-width);
   padding: 12px;
 
   border-radius: 8px;
@@ -146,54 +143,26 @@
 }
 
 
-.layout--portfolio .page__inner-wrap {
-  max-width: none;
-}
-
-/* ===== AJUSTE ANCHO PORTFOLIO ===== */
+/* ===== CONFIGURACIÓN GENERAL PORTFOLIO ===== */
 
 .layout--portfolio .page {
+  float: none;
   width: 100%;
   max-width: none;
+  padding-inline-end: 0;
 }
 
 .layout--portfolio .page__inner-wrap {
   width: 100%;
   max-width: none;
+  padding-inline-end: 0;
 }
-
-.layout--portfolio .portfolio-layout {
-  width: 100%;
-}
-
-/* ===== AJUSTE CONTENEDOR PORTFOLIO ===== */
 
 .layout--portfolio .initial-content {
   max-width: none;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
-}
-/* ===== AJUSTE PORTFOLIO: ELIMINAR SIDEBAR NATIVO ===== */
-
-.layout--portfolio article.page {
-  float: none;
-}
-
-.layout--portfolio .page__inner-wrap {
-  padding-inline-end: 0;
-}
-
-.page__inner-wrap {
-  float: none;
-  padding-inline-end: 0 !important;
-}
-
-/* ===== AJUSTE PORTFOLIO: eliminar layout lateral de Minimal Mistakes ===== */
-
-article.page {
-  float: none;
-  padding-inline-end: 0 !important;
 }
 
 .layout--portfolio .page__content {
@@ -202,8 +171,6 @@ article.page {
 }
 
 
-/* ===== PORTFOLIO: eliminar sidebar derecho de Minimal Mistakes ===== */
-
 @media (min-width: 64em) {
 
   .layout--portfolio .page {
@@ -211,4 +178,5 @@ article.page {
     width: 100%;
     padding-inline-end: 0;
   }
+
 }
