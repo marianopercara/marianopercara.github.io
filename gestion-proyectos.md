@@ -21,6 +21,13 @@ Gestioné y di seguimiento a proyectos de infraestructura dentro de una cartera 
 - **Evaluación Técnica:** Análisis de precios, control de certificaciones y seguimiento integral de contratos de obras de infraestructura (FFFIR y Municipalidad de Esteban Echeverría).
 - **Supervisión en Terreno:** Gestión de contratistas garantizando estándares de calidad, seguridad y cumplimiento de plazos (Municipalidad de Esteban Echeverría).
 
+## Formación y Certificaciones en Gestión
+
+- **Project Management for Results (PM4R) Professional** (2023) - BID Argentina.
+- **Diplomatura en Gestión de Proyectos y Financiamiento Externo** (2020) - Universidad Nacional de Tres de Febrero.
+- **Objetivo 2026:** Certificación PMP (Project Management Professional) del Project Management Institute (PMI) - En preparación.
+
+
 ## Herramientas y Metodologías
-- **Metodologías:** PM4R (BID), PMBOK-PMI (en curso).
+- **Metodologías:** PM4R (BID), PMBOK (PMI) (objetivo 2026).
 - **Software:** Microsoft Project, Microsoft 365, Primavera P6 (en aprendizaje).
