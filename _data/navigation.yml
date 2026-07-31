@@ -1,6 +1,17 @@
 main:
-  - title: "Inicio"
+  - title: "Página principal"
     url: /
+  - title: "Ingeniería"
+    url: /ingenieria/
+  - title: "Gestión de Proyectos"
+    url: /gestion-proyectos/
+  - title: "Adquisiciones y Contrataciones"
+    url: /adquisiciones/
+  - title: "BI y Análisis de Datos"
+    url: /bi/
+  - title: "Docencia"
+    url: /docencia/
+    
 #  - title: "CV"
 #    url: /CV/
 #  - title: "Tags"
