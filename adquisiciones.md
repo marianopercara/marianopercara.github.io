@@ -29,8 +29,5 @@ Experiencia integral en la estructuración de procesos licitatorios bajo normati
 - **Auditorías y Compliance:** Participación activa en el proceso de respuesta a auditorías del programa, preparando documentación y justificando el cumplimiento de normativas y procedimientos.
 - **Trazabilidad Documental:** Administración del archivo de proyecto, garantizando la disponibilidad y actualización de la documentación contractual para todos los actores involucrados.
 
----
+{% include contacto-footer.md %}
 
-**¿Querés ver mi CV completo o conversar sobre un proyecto?**
-
-Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
