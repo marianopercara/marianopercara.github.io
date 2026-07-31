@@ -20,4 +20,4 @@ Formación de nuevos profesionales y estudiantes en todos los niveles educativos
 - **Arquitectura para la Enseñanza** – Diseño de prácticas de enseñanza en contextos de Educación Técnico Profesional - (En curso)  Agencia de Habilidades para el Futuro, GCBA.
 - **Consignas que enseñan: pensar el número, el álgebra y el hacer matemático en el aula del nivel secundario** (2026) – Escuela de Maestros, GCBA.
 - **Curso Autoasistido: Enseñanza y aprendizaje de Habilidades Socio Emocionales (HSE)** (2025) – Escuela de Maestros, GCBA.
-- **Curso Educación para la Sustentabilidad | Ley Yolanda** (2025) – Escuela de Maestros, GCBA.
+- **Curso Educación para la Sustentabilidad - Ley Yolanda** (2025) – Escuela de Maestros, GCBA.
