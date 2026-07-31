@@ -28,3 +28,9 @@ Experiencia integral en la estructuración de procesos licitatorios bajo normati
 - **Desembolsos Internacionales:** Coordinación y armado de solicitudes de desembolso ante organismos de crédito internacional.
 - **Auditorías y Compliance:** Participación activa en el proceso de respuesta a auditorías del programa, preparando documentación y justificando el cumplimiento de normativas y procedimientos.
 - **Trazabilidad Documental:** Administración del archivo de proyecto, garantizando la disponibilidad y actualización de la documentación contractual para todos los actores involucrados.
+
+---
+
+**¿Querés ver mi CV completo o conversar sobre un proyecto?**
+
+Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
