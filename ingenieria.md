@@ -6,11 +6,6 @@ permalink: /ingenieria/
 author_profile: false
 ---
 
----
-title: Ingeniería
-layout: single
-author_profile: true
----
 
 ## Experiencia en Ingeniería Estructural
 
@@ -53,35 +48,41 @@ Ingeniero Civil (UBA) con más de 10 años de experiencia en diseño estructural
 
 ## Proyectos Destacados
 
-### Segundo Aliviador del Arroyo Vega (SRK Consulting, 2016-2018)
-Diseño estructural e ingeniería de detalle para el pozo de descarga y acceso de tuneladora.
+- **Segundo Aliviador del Arroyo Vega (SRK Consulting, 2016-2018)**
+  
+  Diseño estructural e ingeniería de detalle para el pozo de descarga y acceso de tuneladora.
+  
+  **Tareas principales:** Cálculo y diseño de estructuras de contención, túneles, muros colados y estructuras auxiliares para tuneladora. Documentación gráfica.
 
-**Tareas principales:** Cálculo y diseño de estructuras de contención, túneles, muros colados y estructuras auxiliares para tuneladora. Documentación gráfica. 
+- **Canal de Toma - Reactor CAREM 25 (SRK Consulting, 2016-2018)**
+  
+  Ingeniería de detalle para obra de canal de toma de una parte de la central nuclear.
+  
+  **Tareas principales:** Diseño estructural de tablestacado y viga de coronamiento. Documentación gráfica.
 
-### Canal de Toma - Reactor CAREM 25 (SRK Consulting, 2016-2018)
-Ingeniería de detalle para obra de canal de toma de una parte de la central nuclear. 
+- **Túneles del Subte de Buenos Aires (SRK Consulting, 2016-2018)**
+  
+  Túneles peatonales del nodo Obelisco y túneles para talleres y cocheras de Parque Patricios.
+  
+  **Tareas principales:** Documentación de procedimiento constructivo y cálculo estructural de túneles y otras obras subterráneas.
 
-**Tareas principales:** Diseño estructural de tablestacado y viga de coronamiento. Documentación gráfica. 
+- **Estructuras de Soporte y Fundaciones - Hytech Ingeniería (Consultor Independiente, 2025-actualidad)**
+  
+  Ingeniería civil para la industria del gas y petróleo.
+  
+  **Tareas principales:** Elaboración de documentación técnica completa, a niveles básico y de detalle, diseño de estructuras de soporte y fundaciones de hormigón armado.
 
-### Túneles del Subte de Buenos Aires (SRK Consulting, 2016-2018)
-Túneles peatonales del nodo Obelisco y túneles para talleres y cocheras de Parque Patricios.
+- **Plantas Depuradoras y Acueductos - ROPORTO y Asociados (Consultor Independiente, 2020-actualidad)**
+  
+  Diseño de estructuras de hormigón armado para obras sanitarias.
+  
+  **Tareas principales:** Desarrollo de memorias de cálculo y documentación gráfica a niveles de ingeniería básica e ingeniería de detalle.
 
-**Tareas principales:** Documentación de procedimiento constructivo y cálculo estructural de  túneles y otras obras subterráneas. 
-
-### Estructuras de Soporte y Fundaciones - Hytech Ingeniería (Consultor Independiente, 2025-actualidad)
-Ingeniería civil para la industria del gas y petróleo.
-
-**Tareas principales:** Elaboración de documentación técnica completa, a niveles básico y de detalle, diseño de estructuras de soporte y fundaciones de hormigón armado.
-
-### Plantas Depuradoras y Acueductos - ROPORTO y Asociados (Consultor Independiente, 2020-actualidad)
-Diseño de estructuras de hormigón armado para obras sanitarias.
-
-**Tareas principales:** Desarrollo de memorias de cálculo y documentación gráfica a niveles de ingeniería básica e ingeniería de detalle. 
-
-### Complejos de Viviendas y Oficinas (Cotto – Chevez Ingeniería, 2014-2016)
-Diseño estructural para edificios de viviendas, oficinas, estacionamientos y club deportivo (Pringles 1245, Cramer 1753, Arboris-Quartier La Horqueta, anteproyecto YMCA Reconquista).
-
-**Tareas principales:** Desarrollo de memorias de cálculo, modelado estructural y elaboración de planos a niveles de prefactibilidad, ingeniería básica y de detalle.
+- **Complejos de Viviendas y Oficinas (Cotto – Chevez Ingeniería, 2014-2016)**
+  
+  Diseño estructural para edificios de viviendas, oficinas, estacionamientos y club deportivo (Pringles 1245, Cramer 1753, Arboris-Quartier La Horqueta, anteproyecto YMCA Reconquista).
+  
+  **Tareas principales:** Desarrollo de memorias de cálculo, modelado estructural y elaboración de planos a niveles de prefactibilidad, ingeniería básica y de detalle.
 
 ## Otros proyectos en los que participé
 
