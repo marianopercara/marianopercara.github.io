@@ -81,8 +81,7 @@
 }
 
 .portfolio-sidebar {
-  position: sticky;
-  top: 120px;
+  position: relative;
 }
 
 .portfolio-content {
@@ -94,6 +93,9 @@
 /* ===== TOC ===== */
 
 .toc-auto {
+  position: sticky;
+  top: 120px;
+  
   width: var(--toc-width);
   padding: 12px;
   border-radius: 8px;
