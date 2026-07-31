@@ -73,6 +73,8 @@
 
 .portfolio-layout {
   --toc-width: clamp(260px, 18vw, 300px);
+  --sticky-top: 80px;
+
   display: grid;
   grid-template-columns: var(--toc-width) minmax(0, 1fr);
   gap: 30px;
@@ -308,7 +310,7 @@
 .portfolio-toc {
 
   position: sticky;
-  top: 80px;
+  top: var(--sticky-top);
 
   align-self: start;
   
