@@ -156,6 +156,7 @@
 @media (max-width: 1000px) {
 
   .portfolio-layout {
+    --toc-width: 100%;
     grid-template-columns: 1fr;
   }
 
@@ -165,11 +166,11 @@
   }
 
   .portfolio-nav {
-    width: 100%;
+    width: var(--toc-width);
   }
   
   .toc-auto {
-    width: 100%;
+    width: var(--toc-width);
   }
 
 }
