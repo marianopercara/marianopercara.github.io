@@ -93,9 +93,6 @@
 /* ===== TOC ===== */
 
 .toc-auto {
-  position: sticky;
-  top: 120px;
-  
   width: var(--toc-width);
   padding: 12px;
   border-radius: 8px;
@@ -304,5 +301,14 @@
   padding-left: 8px;
 
   font-weight: bold;
+
+}
+
+/* ===== TOC STICKY ===== */
+.portfolio-toc {
+
+  position: sticky;
+
+  top: 120px;
 
 }
