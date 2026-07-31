@@ -32,8 +32,5 @@ Gestioné y di seguimiento a proyectos de infraestructura dentro de una cartera 
 - **Metodologías:** PM4R (BID), PMBOK (PMI) (objetivo 2026).
 - **Software:** Microsoft Project, Microsoft 365, Primavera P6 (en aprendizaje).
 
----
+{% include contacto-footer.md %}
 
-**¿Querés ver mi CV completo o conversar sobre un proyecto?**
-
-Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
