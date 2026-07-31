@@ -22,8 +22,5 @@ Formación de nuevos profesionales y estudiantes en todos los niveles educativos
 - **Curso Autoasistido: Enseñanza y aprendizaje de Habilidades Socio Emocionales (HSE)** (2025) – Escuela de Maestros, GCBA.
 - **Curso Educación para la Sustentabilidad - Ley Yolanda** (2025) – Escuela de Maestros, GCBA.
 
----
+{% include contacto-footer.md %}
 
-**¿Querés ver mi CV completo o conversar sobre un proyecto?**
-
-Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
