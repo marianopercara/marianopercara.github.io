@@ -96,3 +96,9 @@ Ingeniero Civil (UBA) con más de 10 años de experiencia en diseño estructural
 - **Introducción a la Ingeniería de Presas** (2018) – UBA, Facultad de Ingeniería.
 - **Diseño, Rehabilitación, Inspección y Mantenimiento de Puentes de Acero y Mixtos** (2018) – UBA, Facultad de Ingeniería.
 - **Inspección y Ejecución de Estructuras de Hormigón** (2016) – UBA, Facultad de Ingeniería.
+
+---
+
+**¿Querés ver mi CV completo o conversar sobre un proyecto?**
+
+Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
