@@ -62,8 +62,8 @@ feature_row:                                  # RECUADROS CON IMAGENES PARA NAVE
 
 {% include feature_row %}
 
-{% include contacto-footer.md %}
-
+{% capture footer %}{% include contacto-footer.md %}{% endcapture %}
+ {{ footer | markdownify }}
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
