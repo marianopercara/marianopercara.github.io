@@ -28,8 +28,5 @@ Integro herramientas de análisis de datos y programación para optimizar el con
 - **Programación:** Python (enfoque en análisis de datos y automatización).
 - **Publicación y Colaboración:** GitHub Pages, Microsoft 365 y plataformas en la nube.
 
----
+{% include contacto-footer.md %}
 
-**¿Querés ver mi CV completo o conversar sobre un proyecto?**
-
-Usá los botones de contacto al pie de esta página para escribirme por e-mail o WhatsApp.
