@@ -12,7 +12,7 @@
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
         #map { height: 100vh; width: 100vw; }
         
-        /* Etiquetas permanentes para nombres de puntos */
+        /* Etiquetas de texto permanentes para los marcadores */
         .leaflet-tooltip {
             font-weight: bold;
             font-size: 13px;
@@ -22,7 +22,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Estilo para íconos/emojis */
+        /* Estilo para los marcadores con emojis */
         .custom-icon {
             display: flex;
             justify-content: center;
@@ -35,7 +35,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        /* Estilos base para formas personalizadas */
+        /* Estilo base para formas personalizadas */
         .shape-marker {
             box-sizing: border-box;
             border: 2px solid #ffffff;
@@ -47,12 +47,14 @@
 
     <div id="map"></div>
 
-    <!-- Librerías de Leaflet y PapaParse -->
+    <!-- Librerías Leaflet y PapaParse -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
-        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1s5EcZf3597cCraFTmZiMXbajYKNEaut19hTKnC-xisI/export?format=csv';
+        // URLs de Google Sheets (Publicadas en la web como CSV)
+        const GOOGLE_SHEET_MARCADORES_URL = 'https://docs.google.com/spreadsheets/d/1s5EcZf3597cCraFTmZiMXbajYKNEaut19hTKnC-xisI/export?format=csv';
+        const GOOGLE_SHEET_ZONAS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ_yuNtpaLVxZhLO_PmJwTUGqR94KBFzzHdca2viT9Ct4M4eJUkSfERjEMSbfN9thQS8rvGCUqSjjjx/pub?gid=1511449719&single=true&output=csv';
 
         const map = L.map('map');
 
@@ -62,94 +64,72 @@
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // 1. POLÍGONOS DE LOCALIDADES
-        const zonas = [
-            {
-                nombre: "9 de Abril",
-                coords: [
-                    [-34.7550, -58.5250], [-34.7520, -58.5050], [-34.7680, -58.4720],
-                    [-34.7820, -58.4600], [-34.7950, -58.4650], [-34.7980, -58.4880],
-                    [-34.7900, -58.5150], [-34.7700, -58.5300]
-                ],
-                fillColor: "#3a86ff"
-            },
-            {
-                nombre: "Luis Guillón",
-                coords: [
-                    [-34.7680, -58.4720], [-34.7820, -58.4600], [-34.7950, -58.4650],
-                    [-34.8050, -58.4550], [-34.8120, -58.4480], [-34.8100, -58.4420],
-                    [-34.7880, -58.4380]
-                ],
-                fillColor: "#8338ec"
-            },
-            {
-                nombre: "Monte Grande",
-                coords: [
-                    [-34.7900, -58.5150], [-34.7980, -58.4880], [-34.7950, -58.4650],
-                    [-34.8050, -58.4550], [-34.8120, -58.4480], [-34.8250, -58.4550],
-                    [-34.8380, -58.4620], [-34.8320, -58.4800], [-34.8350, -58.5050]
-                ],
-                fillColor: "#ff006e"
-            },
-            {
-                nombre: "El Jagüel",
-                coords: [
-                    [-34.8350, -58.5050], [-34.8320, -58.4800], [-34.8380, -58.4620],
-                    [-34.8550, -58.4700], [-34.8680, -58.4750], [-34.8600, -58.4950],
-                    [-34.8620, -58.5200], [-34.8480, -58.5100]
-                ],
-                fillColor: "#fb5607"
-            },
-            {
-                nombre: "Canning (Esteban Echeverría)",
-                coords: [
-                    [-34.8620, -58.5200], [-34.8600, -58.4950], [-34.8680, -58.4750],
-                    [-34.8900, -58.4650], [-34.9100, -58.4700], [-34.9000, -58.5000]
-                ],
-                fillColor: "#00b4d8"
-            }
-        ];
-
+        // Grupo contenedor de zonas para ajustar el encuadre inicial
         const grupoZonas = L.featureGroup();
 
-        const ESTILO_PERIMETRO = {
-            color: "#444444",      // Color gris oscuro suave
-            weight: 1.5,           // Grosor fino
-            dashArray: "4, 6",     // Línea punteada suave
-            opacity: 0.6,          // Transparencia del contorno
-            fillOpacity: 0.08      // Fondo muy sutil
+        // Estilo visual estándar para las delimitaciones
+        const ESTILO_PERIMETRO_BASE = {
+            color: "#444444",      // Color de línea suave
+            weight: 1.5,           // Contorno fino
+            dashArray: "4, 6",     // Línea punteada
+            opacity: 0.6           // Transparencia del perímetro
         };
 
-        // Renderizar polígonos
-        zonas.forEach(zona => {
-            const poligono = L.polygon(zona.coords, {
-                ...ESTILO_PERIMETRO,
-                fillColor: zona.fillColor
-            });
+        // 1. CARGA DINÁMICA DE ZONAS (POLÍGONOS) DESDE GOOGLE SHEETS
+        Papa.parse(GOOGLE_SHEET_ZONAS_URL, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                results.data.forEach(row => {
+                    const coordsRaw = row.coordenadas || row.Coordenadas;
+                    const nombre = row.nombre || row.Nombre;
 
-            poligono.addTo(map);
-            grupoZonas.addLayer(poligono);
+                    if (coordsRaw && nombre) {
+                        try {
+                            // Convierte el texto JSON de la celda a un arreglo de coordenadas en JS
+                            const coords = JSON.parse(coordsRaw);
+                            const colorRelleno = row.color || row.Color || '#007bff';
+                            const opacidadRelleno = parseFloat(row.opacidad || row.Opacidad) || 0.08;
+
+                            const poligono = L.polygon(coords, {
+                                ...ESTILO_PERIMETRO_BASE,
+                                fillColor: colorRelleno,
+                                fillOpacity: opacidadRelleno
+                            });
+
+                            poligono.addTo(map);
+                            grupoZonas.addLayer(poligono);
+                        } catch (e) {
+                            console.error("Error al procesar coordenadas de la zona: " + nombre, e);
+                        }
+                    }
+                });
+
+                // Si se cargaron zonas, centrar y encuadrar el mapa automáticamente
+                if (grupoZonas.getLayers().length > 0) {
+                    map.fitBounds(grupoZonas.getBounds(), { padding: [15, 15] });
+                }
+            },
+            error: function(err) {
+                console.error("Error al cargar la pestaña de zonas:", err);
+            }
         });
 
-        // 2. ENCUADRE AUTOMÁTICO INICIAL
-        map.fitBounds(grupoZonas.getBounds(), { padding: [15, 15] });
-
-        // Conversión de coordenadas (comas y puntos)
+        // Función para limpiar coordenadas decimales (cambia comas por puntos)
         function parseCoordinate(val) {
             if (val === undefined || val === null) return NaN;
             const cleaned = val.toString().trim().replace(/,/g, '.');
             return parseFloat(cleaned);
         }
 
-        // 3. PROCESAMIENTO DINÁMICO DE MARCADORES (ÍCONOS Y FORMAS)
-        Papa.parse(GOOGLE_SHEET_CSV_URL, {
+        // 2. CARGA DINÁMICA DE MARCADORES DESDE GOOGLE SHEETS
+        Papa.parse(GOOGLE_SHEET_MARCADORES_URL, {
             download: true,
             header: true,
             skipEmptyLines: true,
             complete: function(results) {
-                const data = results.data;
-
-                data.forEach((row, index) => {
+                results.data.forEach((row, index) => {
                     const latRaw = row.latitud || row.Latitud || row.lat;
                     const lngRaw = row.longitud || row.Longitud || row.lng || row.lon;
                     
@@ -165,7 +145,7 @@
 
                         let marker;
 
-                        // CASO 1: Si tiene ícono/emoji
+                        // Ícono / Emoji
                         if (iconoEmoji) {
                             const customIcon = L.divIcon({
                                 className: 'custom-icon',
@@ -174,10 +154,9 @@
                                 iconAnchor: [17, 17],
                                 popupAnchor: [0, -17]
                             });
-
                             marker = L.marker([lat, lng], { icon: customIcon });
 
-                        // CASO 2: Si la forma es cuadrado
+                        // Forma: Cuadrado
                         } else if (forma === 'cuadrado' || forma === 'square') {
                             const squareIcon = L.divIcon({
                                 className: 'square-icon',
@@ -186,10 +165,9 @@
                                 iconAnchor: [8, 8],
                                 popupAnchor: [0, -8]
                             });
-
                             marker = L.marker([lat, lng], { icon: squareIcon });
 
-                        // CASO 3: Si la forma es diamante (rombo)
+                        // Forma: Diamante / Rombo
                         } else if (forma === 'diamante' || forma === 'diamond') {
                             const diamondIcon = L.divIcon({
                                 className: 'diamond-icon',
@@ -198,10 +176,9 @@
                                 iconAnchor: [7, 7],
                                 popupAnchor: [0, -7]
                             });
-
                             marker = L.marker([lat, lng], { icon: diamondIcon });
 
-                        // CASO 4: Círculo por defecto
+                        // Círculo estándar
                         } else {
                             marker = L.circleMarker([lat, lng], {
                                 radius: 9,
@@ -215,14 +192,14 @@
 
                         marker.addTo(map);
 
-                        // Etiqueta permanente
+                        // Etiqueta de texto flotante permanente
                         marker.bindTooltip(nombre, {
                             permanent: true,
                             direction: 'top',
                             offset: [0, -10]
                         });
 
-                        // Popup emergente
+                        // Ventana emergente con enlace si existe la celda URL
                         if (enlace) {
                             const popupContent = `
                                 <div style="font-family: Arial, sans-serif; text-align: center; padding: 4px;">
@@ -246,7 +223,7 @@
                 });
             },
             error: function(err) {
-                console.error("Error al obtener los datos de Google Sheets:", err);
+                console.error("Error al cargar la pestaña de marcadores:", err);
             }
         });
     </script>
