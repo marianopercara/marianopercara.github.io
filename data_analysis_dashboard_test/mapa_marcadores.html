@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interactivo OSM</title>
+    
+    <!-- Hojas de estilo de Leaflet (OpenStreetMap) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
+        #map { height: 100vh; width: 100vw; }
+        
+        /* Estilo de las etiquetas permanentes */
+        .leaflet-tooltip {
+            font-weight: bold;
+            font-size: 13px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <!-- Librería Leaflet.js para el Mapa -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Librería PapaParse para leer el CSV de Google Sheets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <script>
+        // 1. Pega aquí el enlace de tu Google Sheet publicado como CSV
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1s5EcZf3597cCraFTmZiMXbajYKNEaut19hTKnC-xisI/export?format=csv&gid=GEO';
+
+        // 2. Inicializar el mapa de OpenStreetMap
+        const map = L.map('map').setView([0, 0], 2);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        // 3. Descargar y procesar los datos de la planilla
+        Papa.parse(GOOGLE_SHEET_CSV_URL, {
+            download: true,
+            header: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                const data = results.data;
+                const bounds = [];
+
+                data.forEach(row => {
+                    const lat = parseFloat(row.latitud);
+                    const lng = parseFloat(row.longitud);
+
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                        bounds.push([lat, lng]);
+
+                        // Crear punto circular con color personalizado
+                        const marker = L.circleMarker([lat, lng], {
+                            radius: 10,
+                            fillColor: row.color || '#007bff',
+                            color: '#ffffff', // Borde blanco
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.85
+                        }).addTo(map);
+
+                        // Etiqueta permanente (nombre visible de lejos)
+                        marker.bindTooltip(row.nombre, {
+                            permanent: true,
+                            direction: 'top',
+                            offset: [0, -8]
+                        });
+
+                        // Cuadro con botón/enlace al hacer clic
+                        const popupContent = `
+                            <div style="font-family: Arial, sans-serif; text-align: center; padding: 5px;">
+                                <h4 style="margin: 0 0 8px 0; color: #333;">${row.nombre}</h4>
+                                <a href="${row.enlace}" target="_blank" style="
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    background: #007bff;
+                                    color: white;
+                                    text-decoration: none;
+                                    border-radius: 4px;
+                                    font-weight: bold;
+                                    font-size: 12px;">
+                                    🔗 Abrir Enlace
+                                </a>
+                            </div>
+                        `;
+                        marker.bindPopup(popupContent);
+                    }
+                });
+
+                // Auto-encuadrar el mapa para mostrar todos los puntos cargados
+                if (bounds.length > 0) {
+                    map.fitBounds(bounds, { padding: [50, 50] });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
