@@ -12,7 +12,7 @@
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
         #map { height: 100vh; width: 100vw; }
         
-        /* Estilos para etiquetas de texto persistentes */
+        /* Estilos para etiquetas de texto persistentes de los puntos */
         .leaflet-tooltip {
             font-weight: bold;
             font-size: 13px;
@@ -55,7 +55,7 @@
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // 1. POLÍGONOS EXACTOS Y CONTINUOS (Comparten bordes sin encimarse)
+        // 1. POLÍGONOS DE LOCALIDADES
         const zonas = [
             {
                 nombre: "9 de Abril",
@@ -64,89 +64,88 @@
                     [-34.7520, -58.5050],
                     [-34.7680, -58.4720],
                     [-34.7820, -58.4600],
-                    [-34.7950, -58.4650], // Nodo límite con Monte Grande y Luis Guillón
+                    [-34.7950, -58.4650],
                     [-34.7980, -58.4880],
                     [-34.7900, -58.5150],
                     [-34.7700, -58.5300]
                 ],
-                fillColor: "#3a86ff" // Azul
+                fillColor: "#3a86ff"
             },
             {
                 nombre: "Luis Guillón",
                 coords: [
                     [-34.7680, -58.4720],
                     [-34.7820, -58.4600],
-                    [-34.7950, -58.4650], // Nodo compartido
+                    [-34.7950, -58.4650],
                     [-34.8050, -58.4550],
                     [-34.8120, -58.4480],
                     [-34.8100, -58.4420],
                     [-34.7880, -58.4380]
                 ],
-                fillColor: "#8338ec" // Violeta
+                fillColor: "#8338ec"
             },
             {
                 nombre: "Monte Grande",
                 coords: [
                     [-34.7900, -58.5150],
                     [-34.7980, -58.4880],
-                    [-34.7950, -58.4650], // Nodo compartido
+                    [-34.7950, -58.4650],
                     [-34.8050, -58.4550],
                     [-34.8120, -58.4480],
                     [-34.8250, -58.4550],
-                    [-34.8380, -58.4620], // Nodo compartido con El Jagüel
+                    [-34.8380, -58.4620],
                     [-34.8320, -58.4800],
                     [-34.8350, -58.5050]
                 ],
-                fillColor: "#ff006e" // Rosa / Rojo
+                fillColor: "#ff006e"
             },
             {
                 nombre: "El Jagüel",
                 coords: [
                     [-34.8350, -58.5050],
                     [-34.8320, -58.4800],
-                    [-34.8380, -58.4620], // Nodo compartido
+                    [-34.8380, -58.4620],
                     [-34.8550, -58.4700],
-                    [-34.8680, -58.4750], // Nodo compartido con Canning
+                    [-34.8680, -58.4750],
                     [-34.8600, -58.4950],
                     [-34.8620, -58.5200],
                     [-34.8480, -58.5100]
                 ],
-                fillColor: "#fb5607" // Naranja
+                fillColor: "#fb5607"
             },
             {
                 nombre: "Canning (Esteban Echeverría)",
                 coords: [
                     [-34.8620, -58.5200],
                     [-34.8600, -58.4950],
-                    [-34.8680, -58.4750], // Nodo compartido
+                    [-34.8680, -58.4750],
                     [-34.8900, -58.4650],
-                    [-34.9100, -58.4700], // Límite Sur (San Vicente)
-                    [-34.9000, -58.5000]  // Límite Oeste (Ruta 58 / Ezeiza)
+                    [-34.9100, -58.4700],
+                    [-34.9000, -58.5000]
                 ],
-                fillColor: "#00b4d8" // Celeste
+                fillColor: "#00b4d8"
             }
         ];
 
         const grupoZonas = L.featureGroup();
 
-        // Configuración de perímetro suave y punteado con fondo transparente
         const ESTILO_PERIMETRO = {
             color: "#444444",      // Color gris oscuro suave
             weight: 1.5,           // Grosor fino
             dashArray: "4, 6",     // Línea punteada suave
             opacity: 0.6,          // Transparencia del contorno
-            fillOpacity: 0.08      // Fondo muy sutil y transparente
+            fillOpacity: 0.08      // Fondo muy sutil
         };
 
-        // Renderizado de las localidades
+        // Renderizado de áreas sin tooltip ni etiquetas en hover
         zonas.forEach(zona => {
-            const polígono = L.polygon(zona.coords, {
+            const poligono = L.polygon(zona.coords, {
                 ...ESTILO_PERIMETRO,
                 fillColor: zona.fillColor
-            }).bindTooltip(zona.nombre, { permanent: false, direction: "center" });
+            });
 
-            polígono.addTo(map);
-            grupoZonas.addLayer(polígono);
+            poligono.addTo(map);
+            grupoZonas.addLayer(poligono);
         });
 
         // 2. ENCUADRE AUTOMÁTICO INICIAL ABARCANDO TODAS LAS LOCALIDADES
