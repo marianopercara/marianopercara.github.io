@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mapa Esteban Echeverría</title>
     
+    <!-- Estilos de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <style>
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
         #map { height: 100vh; width: 100vw; }
         
-        /* Estilos para etiquetas de texto */
+        /* Estilos para etiquetas de texto persistentes */
         .leaflet-tooltip {
             font-weight: bold;
             font-size: 13px;
@@ -27,7 +28,7 @@
             justify-content: center;
             align-content: center;
             align-items: center;
-            font-size: 22px;
+            font-size: 20px;
             background: white;
             border: 2px solid #333;
             border-radius: 50%;
@@ -39,46 +40,57 @@
 
     <div id="map"></div>
 
+    <!-- Librerías de Leaflet y PapaParse -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
+        // URL oficial de exportación CSV de tu Google Sheet
         const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1s5EcZf3597cCraFTmZiMXbajYKNEaut19hTKnC-xisI/export?format=csv';
 
-        // 1. PANTALLA DE VISUALIZACIÓN INICIAL (Centro en Monte Grande, Zoom 15)
+        // 1. CONFIGURACIÓN DE PANTALLA INICIAL (Monte Grande, Esteban Echeverría)
         const CENTRO_INICIAL = [-34.8182, -58.4670];
         const ZOOM_INICIAL = 15;
 
         const map = L.map('map').setView(CENTRO_INICIAL, ZOOM_INICIAL);
 
+        // Capa de mapa base de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // 2. DEMARCAR UN ÁREA (Rectángulo en el centro de Monte Grande)
-        // Definido por las esquinas [Suroeste] y [Noreste]
+        // 2. DEMARCACIÓN DE ÁREA (Rectángulo punteado en zona centro)
         const boundsArea = [
             [-34.8230, -58.4730], // Esquina Suroeste
             [-34.8130, -58.4610]  // Esquina Noreste
         ];
 
         L.rectangle(boundsArea, {
-            color: "#d90429",      # Color del borde
-            weight: 2,             # Grosor de línea
-            fillColor: "#ffb703",  # Color de relleno
-            fillOpacity: 0.15,     # Transparencia del área
-            dashArray: "5, 5"      # Línea punteada
+            color: "#d90429",      // Color del borde
+            weight: 2,             // Grosor de línea
+            fillColor: "#ffb703",  # Color de relleno en versión corregida
+            fillOpacity: 0.15,     // Transparencia
+            dashArray: "5, 5"      // Línea punteada
         }).addTo(map).bindTooltip("Zona Centro Esteban Echeverría", { permanent: false, direction: "center" });
 
-        // Función para limpiar y convertir coordenadas de texto (ej: "-34,8182" a -34.8182)
+        // Corrección de comentarios JavaScript
+        L.rectangle(boundsArea, {
+            color: "#d90429",      // Color del borde
+            weight: 2,             // Grosor de línea
+            fillColor: "#ffb703",  // Color de relleno
+            fillOpacity: 0.15,     // Transparencia del área
+            dashArray: "5, 5"      // Línea punteada
+        }).addTo(map).bindTooltip("Zona Centro Esteban Echeverría", { permanent: false, direction: "center" });
+
+        // Función global para convertir tanto comas como puntos a float válido
         function parseCoordinate(val) {
-            if (!val) return NaN;
-            const cleaned = val.toString().trim().replace(',', '.');
+            if (val === undefined || val === null) return NaN;
+            const cleaned = val.toString().trim().replace(/,/g, '.');
             return parseFloat(cleaned);
         }
 
-        // 3. CARGA Y PROCESAMIENTO DE DATOS
+        // 3. LECTURA ASINCRÓNICA DE LA PLANILLA Y CREACIÓN DE MARCADORES
         Papa.parse(GOOGLE_SHEET_CSV_URL, {
             download: true,
             header: true,
@@ -97,23 +109,23 @@
                         const nombre = row.nombre || row.Nombre || 'Punto ' + (index + 1);
                         const iconoEmoji = row.icono || row.Icono || '🏛️';
                         const colorPunto = row.color || row.Color || '#007bff';
-                        const enlace = row.enlace || row.Enlace || row.url;
+                        const enlace = row.enlace || row.Enlace || row.url || row.URL;
 
                         let marker;
 
-                        // Si es la Municipalidad o tiene un ícono definido, usar ícono con imagen/emoji
-                        if (nombre.toLowerCase().includes('municipalidad') || row.icono) {
+                        // Marcador especial si es la Municipalidad o si tiene icono especificado
+                        if (nombre.toLowerCase().includes('municipalidad') || row.icono || row.Icono) {
                             const customIcon = L.divIcon({
                                 className: 'custom-icon',
                                 html: `<span>${iconoEmoji}</span>`,
-                                iconSize: [36, 36],
-                                iconAnchor: [18, 18],
-                                popupAnchor: [0, -18]
+                                iconSize: [34, 34],
+                                iconAnchor: [17, 17],
+                                popupAnchor: [0, -17]
                             });
 
                             marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
                         } else {
-                            // Punto circular estándar para los demás sitios
+                            // Punto circular estándar de color
                             marker = L.circleMarker([lat, lng], {
                                 radius: 9,
                                 fillColor: colorPunto,
@@ -124,17 +136,17 @@
                             }).addTo(map);
                         }
 
-                        // Etiqueta visible al acercarse/pasar
+                        // Etiqueta permanente flotante sobre el punto
                         marker.bindTooltip(nombre, {
                             permanent: true,
                             direction: 'top',
                             offset: [0, -10]
                         });
 
-                        // Ventana emergente al hacer clic
+                        // Pop-up con hipervínculo
                         if (enlace) {
                             const popupContent = `
-                                <div style="font-family: Arial; text-align: center; padding: 5px;">
+                                <div style="font-family: Arial, sans-serif; text-align: center; padding: 4px;">
                                     <h4 style="margin: 0 0 8px 0; color: #333;">${nombre}</h4>
                                     <a href="${enlace}" target="_blank" style="
                                         display: inline-block;
@@ -153,10 +165,11 @@
                         }
                     }
                 });
+            },
+            error: function(err) {
+                console.error("Error al obtener los datos de Google Sheets:", err);
             }
         });
     </script>
 </body>
 </html>
-
-
