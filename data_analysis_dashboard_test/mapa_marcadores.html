@@ -12,7 +12,7 @@
         body, html { margin: 0; padding: 0; height: 100%; width: 100%; }
         #map { height: 100vh; width: 100vw; }
         
-        /* Estilos para etiquetas de texto persistentes de los puntos */
+        /* Etiquetas permanentes para nombres de puntos */
         .leaflet-tooltip {
             font-weight: bold;
             font-size: 13px;
@@ -22,7 +22,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Marcadores con íconos personalizados */
+        /* Estilo para íconos/emojis */
         .custom-icon {
             display: flex;
             justify-content: center;
@@ -33,6 +33,13 @@
             border: 2px solid #333;
             border-radius: 50%;
             box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        /* Estilos base para formas personalizadas */
+        .shape-marker {
+            box-sizing: border-box;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
         }
     </style>
 </head>
@@ -60,26 +67,17 @@
             {
                 nombre: "9 de Abril",
                 coords: [
-                    [-34.7550, -58.5250],
-                    [-34.7520, -58.5050],
-                    [-34.7680, -58.4720],
-                    [-34.7820, -58.4600],
-                    [-34.7950, -58.4650],
-                    [-34.7980, -58.4880],
-                    [-34.7900, -58.5150],
-                    [-34.7700, -58.5300]
+                    [-34.7550, -58.5250], [-34.7520, -58.5050], [-34.7680, -58.4720],
+                    [-34.7820, -58.4600], [-34.7950, -58.4650], [-34.7980, -58.4880],
+                    [-34.7900, -58.5150], [-34.7700, -58.5300]
                 ],
                 fillColor: "#3a86ff"
             },
             {
                 nombre: "Luis Guillón",
                 coords: [
-                    [-34.7680, -58.4720],
-                    [-34.7820, -58.4600],
-                    [-34.7950, -58.4650],
-                    [-34.8050, -58.4550],
-                    [-34.8120, -58.4480],
-                    [-34.8100, -58.4420],
+                    [-34.7680, -58.4720], [-34.7820, -58.4600], [-34.7950, -58.4650],
+                    [-34.8050, -58.4550], [-34.8120, -58.4480], [-34.8100, -58.4420],
                     [-34.7880, -58.4380]
                 ],
                 fillColor: "#8338ec"
@@ -87,41 +85,26 @@
             {
                 nombre: "Monte Grande",
                 coords: [
-                    [-34.7900, -58.5150],
-                    [-34.7980, -58.4880],
-                    [-34.7950, -58.4650],
-                    [-34.8050, -58.4550],
-                    [-34.8120, -58.4480],
-                    [-34.8250, -58.4550],
-                    [-34.8380, -58.4620],
-                    [-34.8320, -58.4800],
-                    [-34.8350, -58.5050]
+                    [-34.7900, -58.5150], [-34.7980, -58.4880], [-34.7950, -58.4650],
+                    [-34.8050, -58.4550], [-34.8120, -58.4480], [-34.8250, -58.4550],
+                    [-34.8380, -58.4620], [-34.8320, -58.4800], [-34.8350, -58.5050]
                 ],
                 fillColor: "#ff006e"
             },
             {
                 nombre: "El Jagüel",
                 coords: [
-                    [-34.8350, -58.5050],
-                    [-34.8320, -58.4800],
-                    [-34.8380, -58.4620],
-                    [-34.8550, -58.4700],
-                    [-34.8680, -58.4750],
-                    [-34.8600, -58.4950],
-                    [-34.8620, -58.5200],
-                    [-34.8480, -58.5100]
+                    [-34.8350, -58.5050], [-34.8320, -58.4800], [-34.8380, -58.4620],
+                    [-34.8550, -58.4700], [-34.8680, -58.4750], [-34.8600, -58.4950],
+                    [-34.8620, -58.5200], [-34.8480, -58.5100]
                 ],
                 fillColor: "#fb5607"
             },
             {
                 nombre: "Canning (Esteban Echeverría)",
                 coords: [
-                    [-34.8620, -58.5200],
-                    [-34.8600, -58.4950],
-                    [-34.8680, -58.4750],
-                    [-34.8900, -58.4650],
-                    [-34.9100, -58.4700],
-                    [-34.9000, -58.5000]
+                    [-34.8620, -58.5200], [-34.8600, -58.4950], [-34.8680, -58.4750],
+                    [-34.8900, -58.4650], [-34.9100, -58.4700], [-34.9000, -58.5000]
                 ],
                 fillColor: "#00b4d8"
             }
@@ -137,7 +120,7 @@
             fillOpacity: 0.08      // Fondo muy sutil
         };
 
-        // Renderizado de áreas sin tooltip ni etiquetas en hover
+        // Renderizar polígonos
         zonas.forEach(zona => {
             const poligono = L.polygon(zona.coords, {
                 ...ESTILO_PERIMETRO,
@@ -148,17 +131,17 @@
             grupoZonas.addLayer(poligono);
         });
 
-        // 2. ENCUADRE AUTOMÁTICO INICIAL ABARCANDO TODAS LAS LOCALIDADES
+        // 2. ENCUADRE AUTOMÁTICO INICIAL
         map.fitBounds(grupoZonas.getBounds(), { padding: [15, 15] });
 
-        // Conversión de formato de coordenadas (comas y puntos decimales)
+        // Conversión de coordenadas (comas y puntos)
         function parseCoordinate(val) {
             if (val === undefined || val === null) return NaN;
             const cleaned = val.toString().trim().replace(/,/g, '.');
             return parseFloat(cleaned);
         }
 
-        // 3. LECTURA DE GOOGLE SHEETS Y CREACIÓN DE MARCADORES
+        // 3. PROCESAMIENTO DINÁMICO DE MARCADORES (ÍCONOS Y FORMAS)
         Papa.parse(GOOGLE_SHEET_CSV_URL, {
             download: true,
             header: true,
@@ -175,13 +158,15 @@
 
                     if (!isNaN(lat) && !isNaN(lng)) {
                         const nombre = row.nombre || row.Nombre || 'Punto ' + (index + 1);
-                        const iconoEmoji = row.icono || row.Icono || '🏛️';
+                        const iconoEmoji = row.icono || row.Icono;
+                        const forma = (row.forma || row.Forma || 'circulo').toLowerCase().trim();
                         const colorPunto = row.color || row.Color || '#007bff';
                         const enlace = row.enlace || row.Enlace || row.url || row.URL;
 
                         let marker;
 
-                        if (nombre.toLowerCase().includes('municipalidad') || row.icono || row.Icono) {
+                        // CASO 1: Si tiene ícono/emoji
+                        if (iconoEmoji) {
                             const customIcon = L.divIcon({
                                 className: 'custom-icon',
                                 html: `<span>${iconoEmoji}</span>`,
@@ -190,7 +175,33 @@
                                 popupAnchor: [0, -17]
                             });
 
-                            marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
+                            marker = L.marker([lat, lng], { icon: customIcon });
+
+                        // CASO 2: Si la forma es cuadrado
+                        } else if (forma === 'cuadrado' || forma === 'square') {
+                            const squareIcon = L.divIcon({
+                                className: 'square-icon',
+                                html: `<div class="shape-marker" style="background-color: ${colorPunto}; width: 16px; height: 16px; border-radius: 2px;"></div>`,
+                                iconSize: [16, 16],
+                                iconAnchor: [8, 8],
+                                popupAnchor: [0, -8]
+                            });
+
+                            marker = L.marker([lat, lng], { icon: squareIcon });
+
+                        // CASO 3: Si la forma es diamante (rombo)
+                        } else if (forma === 'diamante' || forma === 'diamond') {
+                            const diamondIcon = L.divIcon({
+                                className: 'diamond-icon',
+                                html: `<div class="shape-marker" style="background-color: ${colorPunto}; width: 14px; height: 14px; transform: rotate(45deg);"></div>`,
+                                iconSize: [14, 14],
+                                iconAnchor: [7, 7],
+                                popupAnchor: [0, -7]
+                            });
+
+                            marker = L.marker([lat, lng], { icon: diamondIcon });
+
+                        // CASO 4: Círculo por defecto
                         } else {
                             marker = L.circleMarker([lat, lng], {
                                 radius: 9,
@@ -199,15 +210,19 @@
                                 weight: 2,
                                 opacity: 1,
                                 fillOpacity: 0.9
-                            }).addTo(map);
+                            });
                         }
 
+                        marker.addTo(map);
+
+                        // Etiqueta permanente
                         marker.bindTooltip(nombre, {
                             permanent: true,
                             direction: 'top',
                             offset: [0, -10]
                         });
 
+                        // Popup emergente
                         if (enlace) {
                             const popupContent = `
                                 <div style="font-family: Arial, sans-serif; text-align: center; padding: 4px;">
