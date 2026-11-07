@@ -22,7 +22,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Estilo para los marcadores con íconos personalizados (Emojis / Edificios) */
+        /* Marcadores con íconos personalizados */
         .custom-icon {
             display: flex;
             justify-content: center;
@@ -45,52 +45,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
     <script>
-        // URL oficial de exportación CSV de tu Google Sheet
         const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1s5EcZf3597cCraFTmZiMXbajYKNEaut19hTKnC-xisI/export?format=csv';
 
-        // 1. CONFIGURACIÓN DE PANTALLA INICIAL (Monte Grande, Esteban Echeverría)
-        const CENTRO_INICIAL = [-34.8182, -58.4670];
-        const ZOOM_INICIAL = 15;
+        // Inicializar mapa básico
+        const map = L.map('map');
 
-        const map = L.map('map').setView(CENTRO_INICIAL, ZOOM_INICIAL);
-
-        // Capa de mapa base de OpenStreetMap
+        // Capa base de OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
-        // 2. DEMARCACIÓN DE ÁREA (Rectángulo punteado en zona centro)
-        const boundsArea = [
-            [-34.8230, -58.4730], // Esquina Suroeste
-            [-34.8130, -58.4610]  // Esquina Noreste
+        // 1. DEFINICIÓN DE LOCALIDADES DE ESTEBAN ECHEVERRÍA
+        const zonas = [
+            {
+                nombre: "9 de Abril",
+                bounds: [[-34.7950, -58.5250], [-34.7600, -58.4600]],
+                fillColor: "#3a86ff" // Azul
+            },
+            {
+                nombre: "Luis Guillón",
+                bounds: [[-34.8150, -58.4550], [-34.7850, -58.4200]],
+                fillColor: "#8338ec" // Violeta
+            },
+            {
+                nombre: "Monte Grande",
+                bounds: [[-34.8350, -58.4850], [-34.8050, -58.4450]],
+                fillColor: "#ff006e" // Rosa / Rojo
+            },
+            {
+                nombre: "El Jagüel",
+                bounds: [[-34.8600, -58.5200], [-34.8300, -58.4700]],
+                fillColor: "#fb5607" // Naranja
+            },
+            {
+                nombre: "Canning (Esteban Echeverría)",
+                bounds: [[-34.8950, -58.5350], [-34.8550, -58.4900]],
+                fillColor: "#00b4d8" // Celeste
+            }
         ];
 
-        L.rectangle(boundsArea, {
-            color: "#d90429",      // Color del borde
-            weight: 2,             // Grosor de línea
-            fillColor: "#ffb703",  // Color de relleno en versión corregida
-            fillOpacity: 0.15,     // Transparencia
-            dashArray: "5, 5"      // Línea punteada
-        }).addTo(map).bindTooltip("Zona Centro Esteban Echeverría", { permanent: false, direction: "center" });
+        // Grupo contenedor para calcular la visualización inicial de todas las zonas
+        const grupoZonas = L.featureGroup();
 
-        // Corrección de comentarios JavaScript
-        L.rectangle(boundsArea, {
-            color: "#d90429",      // Color del borde
-            weight: 2,             // Grosor de línea
-            fillColor: "#ffb703",  // Color de relleno
-            fillOpacity: 0.15,     // Transparencia del área
-            dashArray: "5, 5"      // Línea punteada
-        }).addTo(map).bindTooltip("Zona Centro Esteban Echeverría", { permanent: false, direction: "center" });
+        // Estilo unificado para los perímetros
+        const ESTILO_PERIMETRO = {
+            color: "#222222",  // Mismo color de contorno para todos
+            weight: 1,         // Contorno bien fino
+            fillOpacity: 0.12  // Tono de relleno suave y transparente
+        };
 
-        // Función global para convertir tanto comas como puntos a float válido
+        // Dibujar las zonas en el mapa
+        zonas.forEach(zona => {
+            const rect = L.rectangle(zona.bounds, {
+                ...ESTILO_PERIMETRO,
+                fillColor: zona.fillColor
+            }).bindTooltip(zona.nombre, { permanent: false, direction: "center" });
+
+            rect.addTo(map);
+            grupoZonas.addLayer(rect);
+        });
+
+        // 2. ENCUADRE DE PANTALLA INICIAL AUTOMÁTICO
+        // Ajusta el zoom para abarcar exactamente todas las áreas pintadas
+        map.fitBounds(grupoZonas.getBounds(), { padding: [20, 20] });
+
+        // Función global para convertir coordenadas (comas y puntos)
         function parseCoordinate(val) {
             if (val === undefined || val === null) return NaN;
             const cleaned = val.toString().trim().replace(/,/g, '.');
             return parseFloat(cleaned);
         }
 
-        // 3. LECTURA ASINCRÓNICA DE LA PLANILLA Y CREACIÓN DE MARCADORES
+        // 3. LECTURA ASINCRÓNICA Y CREACIÓN DE MARCADORES
         Papa.parse(GOOGLE_SHEET_CSV_URL, {
             download: true,
             header: true,
@@ -113,7 +140,6 @@
 
                         let marker;
 
-                        // Marcador especial si es la Municipalidad o si tiene icono especificado
                         if (nombre.toLowerCase().includes('municipalidad') || row.icono || row.Icono) {
                             const customIcon = L.divIcon({
                                 className: 'custom-icon',
@@ -125,7 +151,6 @@
 
                             marker = L.marker([lat, lng], { icon: customIcon }).addTo(map);
                         } else {
-                            // Punto circular estándar de color
                             marker = L.circleMarker([lat, lng], {
                                 radius: 9,
                                 fillColor: colorPunto,
@@ -136,14 +161,12 @@
                             }).addTo(map);
                         }
 
-                        // Etiqueta permanente flotante sobre el punto
                         marker.bindTooltip(nombre, {
                             permanent: true,
                             direction: 'top',
                             offset: [0, -10]
                         });
 
-                        // Pop-up con hipervínculo
                         if (enlace) {
                             const popupContent = `
                                 <div style="font-family: Arial, sans-serif; text-align: center; padding: 4px;">
